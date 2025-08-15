@@ -3,7 +3,7 @@ Code generator
 import random
 import string
 
-print("🔐 Secure Password Creator")
+print(" Secure Password Creator")
 
 try:
     size = int(input("Enter the password length: "))
