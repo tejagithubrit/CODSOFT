@@ -1,0 +1,39 @@
+Rock-paper-scissors game
+
+import random
+
+print(" Rock, Paper, Scissors Game!")
+
+options = ["rock", "paper", "scissors"]
+player_points = 0
+cpu_points = 0
+
+while True:
+    player_move = input("Enter your move (rock/paper/scissors): ").strip().lower()
+
+    if player_move not in options:
+        print("⚠ Invalid move! Please type rock, paper, or scissors.")
+        continue
+
+    cpu_move = random.choice(options)
+    print(f" You picked: {player_move}")
+    print(f" Computer picked: {cpu_move}")
+
+    if player_move == cpu_move:
+        print(" It's a draw!")
+    elif (player_move == "rock" and cpu_move == "scissors") or \
+         (player_move == "scissors" and cpu_move == "paper") or \
+         (player_move == "paper" and cpu_move == "rock"):
+        print(" You won this round!")
+        player_points += 1
+    else:
+        print(" Computer wins this round!")
+        cpu_points += 1
+
+    print(f"📊 Current Score → You: {player_points} | Computer: {cpu_points}")
+
+    again = input("Play another round? (yes/no): ").strip().lower()
+    if again != "yes":
+        print(f" Final Score → You: {player_points} | Computer: {cpu_points}")
+        print(" Thanks for playing!")
+        break
