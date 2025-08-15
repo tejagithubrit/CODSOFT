@@ -27,9 +27,9 @@ try:
             output = first_num / second_num
             print(f"{first_num} / {second_num} = {output}")
         else:
-            print("⚠ Cannot divide by zero.")
+            print(" Cannot divide by zero.")
     else:
-        print("⚠ Invalid selection.")
+        print(" Invalid selection.")
 except ValueError:
-    print("⚠ Please enter valid numeric values.")
+    print(" Please enter valid numeric values.")
 
