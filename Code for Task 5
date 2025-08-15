@@ -1,0 +1,99 @@
+Contact book
+
+phonebook = []
+
+def create_contact():
+    person_name = input("Name: ")
+    person_phone = input("Phone: ")
+    person_email = input("Email: ")
+    person_address = input("Address: ")
+    phonebook.append({
+        "name": person_name,
+        "phone": person_phone,
+        "email": person_email,
+        "address": person_address
+    })
+    print(" New contact saved!")
+
+def list_contacts():
+    if not phonebook:
+        print(" No contacts in your list.")
+        return
+    print("\n All Contacts:")
+    for idx, entry in enumerate(phonebook, start=1):
+        print(f"{idx}. {entry['name']} — {entry['phone']}")
+    print()
+
+def find_contact():
+    search_term = input("Enter name or phone to search: ").strip()
+    matches = [entry for entry in phonebook if search_term.lower() in entry['name'].lower() or search_term in entry['phone']]
+    if matches:
+        for entry in matches:
+            print(f"\nName: {entry['name']}")
+            print(f"Phone: {entry['phone']}")
+            print(f"Email: {entry['email']}")
+            print(f"Address: {entry['address']}")
+    else:
+        print(" No matching contact found.")
+
+def edit_contact():
+    target_name = input("Enter the contact name to modify: ").strip()
+    for entry in phonebook:
+        if entry['name'].lower() == target_name.lower():
+            updated_name = input(f"New name ({entry['name']}): ").strip()
+            updated_phone = input(f"New phone ({entry['phone']}): ").strip()
+            updated_email = input(f"New email ({entry['email']}): ").strip()
+            updated_address = input(f"New address ({entry['address']}): ").strip()
+
+            if updated_name:
+                entry['name'] = updated_name
+            if updated_phone:
+                entry['phone'] = updated_phone
+            if updated_email:
+                entry['email'] = updated_email
+            if updated_address:
+                entry['address'] = updated_address
+
+            print(" Contact updated!")
+            return
+    print(" Contact not found.")
+
+def remove_contact():
+    target_name = input("Enter the name of the contact to remove: ").strip()
+    for entry in phonebook:
+        if entry['name'].lower() == target_name.lower():
+            phonebook.remove(entry)
+            print("🗑 Contact removed!")
+            return
+    print(" Contact not found.")
+
+def run_app():
+    while True:
+        print("\n Contact Book Menu")
+        print("1. Add New Contact")
+        print("2. Show All Contacts")
+        print("3. Search Contact")
+        print("4. Modify Contact")
+        print("5. Delete Contact")
+        print("6. Exit")
+
+        user_choice = input("Choose option (1-6): ").strip()
+
+        if user_choice == "1":
+            create_contact()
+        elif user_choice == "2":
+            list_contacts()
+        elif user_choice == "3":
+            find_contact()
+        elif user_choice == "4":
+            edit_contact()
+        elif user_choice == "5":
+            remove_contact()
+        elif user_choice == "6":
+            print(" Exiting the Contact Book. Goodbye!")
+            break
+        else:
+            print("⚠ Invalid selection, please choose between 1 and 6.")
+
+if _name_ == "_main_":
+    run_app()
