@@ -12,7 +12,7 @@ while True:
     player_move = input("Enter your move (rock/paper/scissors): ").strip().lower()
 
     if player_move not in options:
-        print("⚠ Invalid move! Please type rock, paper, or scissors.")
+        print(" Invalid move! Please type rock, paper, or scissors.")
         continue
 
     cpu_move = random.choice(options)
@@ -30,10 +30,10 @@ while True:
         print(" Computer wins this round!")
         cpu_points += 1
 
-    print(f"📊 Current Score → You: {player_points} | Computer: {cpu_points}")
+    print(f" Current Score → You: {player_points} | Computer: {cpu_points}")
 
     again = input("Play another round? (yes/no): ").strip().lower()
     if again != "yes":
         print(f" Final Score → You: {player_points} | Computer: {cpu_points}")
         print(" Thanks for playing!")
-        break
+        
