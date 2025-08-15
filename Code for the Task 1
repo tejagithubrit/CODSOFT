@@ -1,0 +1,88 @@
+To-do-list
+
+import json
+import os
+
+FILENAME = "todo_data.json"
+
+def read_tasks():
+    if os.path.isfile(FILENAME):
+        with open(FILENAME, "r") as f:
+            return json.load(f)
+    return []
+
+def write_tasks(task_list):
+    with open(FILENAME, "w") as f:
+        json.dump(task_list, f, indent=2)
+
+def list_tasks(task_list):
+    if not task_list:
+        print("\n✅ Your to-do list is empty!\n")
+        return
+    print("\n📋 Current Tasks:")
+    for idx, task in enumerate(task_list, start=1):
+        symbol = "✔ Done" if task["completed"] else "❌ Pending"
+        print(f"{idx}. {task['name']} [{symbol}]")
+    print()
+
+def create_task(task_list):
+    task_name = input("Enter a new task: ").strip()
+    if task_name:
+        task_list.append({"name": task_name, "completed": False})
+        print(f"✅ Added: {task_name}")
+    else:
+        print("⚠ You must enter something for the task.")
+
+def finish_task(task_list):
+    list_tasks(task_list)
+    try:
+        num = int(input("Enter the number of the task to mark as done: ")) - 1
+        if 0 <= num < len(task_list):
+            task_list[num]["completed"] = True
+            print(f"✅ Marked as done: {task_list[num]['name']}")
+        else:
+            print("⚠ That number doesn't match any task.")
+    except ValueError:
+        print("⚠ Please enter a valid number.")
+
+def remove_task(task_list):
+    list_tasks(task_list)
+    try:
+        num = int(input("Enter the number of the task to remove: ")) - 1
+        if 0 <= num < len(task_list):
+            deleted = task_list.pop(num)
+            print(f"🗑 Removed: {deleted['name']}")
+        else:
+            print("⚠ That number doesn't match any task.")
+    except ValueError:
+        print("⚠ Please enter a valid number.")
+
+def menu():
+    tasks = read_tasks()
+    while True:
+        print("\n📌 To-Do List Menu")
+        print("1. Show all tasks")
+        print("2. Add a new task")
+        print("3. Mark a task as done")
+        print("4. Delete a task")
+        print("5. Save & Exit")
+
+        choice = input("Choose an option (1-5): ").strip()
+        if choice == "1":
+            list_tasks(tasks)
+        elif choice == "2":
+            create_task(tasks)
+        elif choice == "3":
+            finish_task(tasks)
+        elif choice == "4":
+            remove_task(tasks)
+        elif choice == "5":
+            write_tasks(tasks)
+            print("💾 Saved. Goodbye!")
+            break
+        else:
+            print("⚠ Invalid selection, please try again.")
+
+if _name_ == "_main_":
+    menu()
+
