@@ -41,9 +41,9 @@ def finish_task(task_list):
             task_list[num]["completed"] = True
             print(f" Marked as done: {task_list[num]['name']}")
         else:
-            print("⚠ That number doesn't match any task.")
+            print(" That number doesn't match any task.")
     except ValueError:
-        print("⚠ Please enter a valid number.")
+        print(" Please enter a valid number.")
 
 def remove_task(task_list):
     list_tasks(task_list)
@@ -51,11 +51,11 @@ def remove_task(task_list):
         num = int(input("Enter the number of the task to remove: ")) - 1
         if 0 <= num < len(task_list):
             deleted = task_list.pop(num)
-            print(f"🗑 Removed: {deleted['name']}")
+            print(f" Removed: {deleted['name']}")
         else:
-            print("⚠ That number doesn't match any task.")
+            print(" That number doesn't match any task.")
     except ValueError:
-        print("⚠ Please enter a valid number.")
+        print(" Please enter a valid number.")
 
 def menu():
     tasks = read_tasks()
