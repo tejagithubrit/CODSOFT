@@ -17,11 +17,11 @@ def write_tasks(task_list):
 
 def list_tasks(task_list):
     if not task_list:
-        print("\n✅ Your to-do list is empty!\n")
+        print("\n Your to-do list is empty!\n")
         return
-    print("\n📋 Current Tasks:")
+    print("\n Current Tasks:")
     for idx, task in enumerate(task_list, start=1):
-        symbol = "✔ Done" if task["completed"] else "❌ Pending"
+        symbol = " Done" if task["completed"] else " Pending"
         print(f"{idx}. {task['name']} [{symbol}]")
     print()
 
@@ -29,7 +29,7 @@ def create_task(task_list):
     task_name = input("Enter a new task: ").strip()
     if task_name:
         task_list.append({"name": task_name, "completed": False})
-        print(f"✅ Added: {task_name}")
+        print(f" Added: {task_name}")
     else:
         print("⚠ You must enter something for the task.")
 
@@ -39,7 +39,7 @@ def finish_task(task_list):
         num = int(input("Enter the number of the task to mark as done: ")) - 1
         if 0 <= num < len(task_list):
             task_list[num]["completed"] = True
-            print(f"✅ Marked as done: {task_list[num]['name']}")
+            print(f" Marked as done: {task_list[num]['name']}")
         else:
             print("⚠ That number doesn't match any task.")
     except ValueError:
@@ -60,7 +60,7 @@ def remove_task(task_list):
 def menu():
     tasks = read_tasks()
     while True:
-        print("\n📌 To-Do List Menu")
+        print("\n To-Do List Menu")
         print("1. Show all tasks")
         print("2. Add a new task")
         print("3. Mark a task as done")
@@ -78,10 +78,10 @@ def menu():
             remove_task(tasks)
         elif choice == "5":
             write_tasks(tasks)
-            print("💾 Saved. Goodbye!")
+            print(" Saved. Goodbye!")
             break
         else:
-            print("⚠ Invalid selection, please try again.")
+            print(" Invalid selection, please try again.")
 
 if _name_ == "_main_":
     menu()
