@@ -8,10 +8,10 @@ print(" Secure Password Creator")
 try:
     size = int(input("Enter the password length: "))
     if size <= 0:
-        print("⚠ Length must be a positive number.")
+        print(" Length must be a positive number.")
     else:
         symbols = string.ascii_letters + string.digits + string.punctuation
         generated = "".join(random.choice(symbols) for _ in range(size))
         print("Your new password is:", generated)
 except ValueError:
-    print("⚠ Invalid input! Please enter a numeric value.")
+    print(" Invalid input! Please enter a numeric value.")
